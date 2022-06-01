@@ -143,7 +143,7 @@
         # Print the imbalanced classification report
         print(classification_report_imbalanced(y_resampled, y_pred_cc))
         ```
-    - Over- and undersample using a 
+    - Over and undersampling using SMOTEENN
         ```python
         # Resample the training data with SMOTEENN
         SMOTEENN_model = SMOTEENN(random_state = 1)
