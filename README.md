@@ -240,6 +240,10 @@
         ```python
         # List the features sorted in descending order by feature importance
         importances = brf_model.feature_importances_
+        importances_sorted = sorted(zip(brf_model.feature_importances_, X.columns), reverse = True)
+        display(importances_sorted)
+
+        # Plot Importances
         indices = np.argsort(importances)
         fig, ax = plt.subplots(figsize=(10,20))
         ax.barh(range(len(importances)), importances[indices])
