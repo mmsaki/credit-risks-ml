@@ -258,15 +258,15 @@ Use the [imbalanced learn](https://imbalanced-learn.readthedocs.io) library to r
     # Print the imbalanced classification report
     print(classification_report_imbalanced(y_test, y_pred_eec))
     ```
-- Use the above to answer the following questions:
-    * Which model had the best balanced accuracy score?
-        - Balanced Random Forest Classifier
-    * Which model had the best recall score?
-        - Balanced Random Forest Classifier
-    * Which model had the best geometric mean score?
-        - Balanced Random Forest Classifier
-    * What are the top three features?
-        - total_rec_prncp, total_rec_int, last_pymnt_amnt
+    - Use the above to answer the following questions:
+        * Which model had the best balanced accuracy score?
+            - Balanced Random Forest Classifier
+        * Which model had the best recall score?
+            - Balanced Random Forest Classifier
+        * Which model had the best geometric mean score?
+            - Balanced Random Forest Classifier
+        * What are the top three features?
+            - total_rec_prncp, total_rec_int, last_pymnt_amnt
 - - -
 
 © 2021 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
