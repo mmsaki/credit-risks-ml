@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Background](#background)
-2. [Resampling](#Resampling)
+2. [Resampling Data](#resampling-data)
 3. [Ensemble Learning](#Ensemble-Learning)
 
 ## Background
@@ -16,7 +16,7 @@
 - Credit risk is an inherently imbalanced classification problem (the number of good loans is much larger than the number of at-risk loans), so you will need to employ different techniques for training and evaluating models with imbalanced classes. 
 - You will use the imbalanced-learn and Scikit-learn libraries to build and evaluate models using the two following techniques:
 
-## Resampling
+## Resampling Data
 
 - Use the [imbalanced learn](https://imbalanced-learn.readthedocs.io) library to resample the LendingClub data and build and evaluate logistic regression classifiers using the resampled data.
 
