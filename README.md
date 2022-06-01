@@ -208,7 +208,7 @@ X_test_scaled = X_scaler.transform(X_test)
 ```
 
 Then, complete the following steps for each model:
-1. Balanced Random Forest Classifier
+### Balanced Random Forest Classifier
 - Train the model using the quarterly data from LendingClub provided in the `Resource` folder.
 ```python
 # Resample the training data with the BalancedRandomForestClassifier
@@ -246,7 +246,7 @@ ax.set_yticks(range(len(importances)))
 _ = ax.set_yticklabels(np.array(X_train.columns)[indices])
 ```
 
-2. Easy Ensemble Classifier
+### Easy Ensemble Classifier
 ```python
 # Train the Classifier
 eec_model = EasyEnsembleClassifier(random_state = 1)
