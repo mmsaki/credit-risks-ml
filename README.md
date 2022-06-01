@@ -16,63 +16,62 @@ In this project you will build and evaluate several machine learning models to p
 
 Use the [imbalanced learn](https://imbalanced-learn.readthedocs.io) library to resample the LendingClub data and build and evaluate logistic regression classifiers using the resampled data.
 
-To begin:
+- To begin:
+    - Read the CSV into a DataFrame.
+        ```python
+        # Load the data
+        file_path = Path('Resources/lending_data.csv')
+        df = pd.read_csv(file_path)
+        ```
+    - Split the data into Training and Testing sets.
+        ```python
+        # Create our features
+        X = df.copy()
+        X.drop(columns = ["loan_status", "homeowner"], axis= 1, inplace = True)
 
-- Read the CSV into a DataFrame.
-```python
-# Load the data
-file_path = Path('Resources/lending_data.csv')
-df = pd.read_csv(file_path)
-```
-- Split the data into Training and Testing sets.
-```python
-# Create our features
-X = df.copy()
-X.drop(columns = ["loan_status", "homeowner"], axis= 1, inplace = True)
+        # Create our target
+        y = df["loan_status"]
 
-# Create our target
-y = df["loan_status"]
+        # Create X_train, X_test, y_train, y_test
+        X_train, X_test, y_train, y_test = train_test_split(X,y,random_state = 1, stratify =y)
+        ```
+    - Scale the training and testing data using the `StandardScaler` from `sklearn.preprocessing`.
+        ```python
+        # Create the StandardScaler instance
+        scaler = StandardScaler()
 
-# Create X_train, X_test, y_train, y_test
-X_train, X_test, y_train, y_test = train_test_split(X,y,random_state = 1, stratify =y)
-```
-- Scale the training and testing data using the `StandardScaler` from `sklearn.preprocessing`.
-```python
-# Create the StandardScaler instance
-scaler = StandardScaler()
+        # Fit the Standard Scaler with the training data
+        # When fitting scaling functions, only train on the training dataset
+        X_scaler = scaler.fit(X_train)
 
-# Fit the Standard Scaler with the training data
-# When fitting scaling functions, only train on the training dataset
-X_scaler = scaler.fit(X_train)
-
-# Scale the training and testing data
-X_train_scaled = X_scaler.transform(X_train)
-X_test_scaled = X_scaler.transform(X_test)
-```
+        # Scale the training and testing data
+        X_train_scaled = X_scaler.transform(X_train)
+        X_test_scaled = X_scaler.transform(X_test)
+        ```
 - Use the provided code to run a Simple Logistic Regression:
-* Fit the `logistic regression classifier`.
-```python
-# Train the Logistic Regression model
-lr_model = LogisticRegression(solver='lbfgs', random_state=1)
-lr_model.fit(X_train, y_train)
-```
-* Calculate the `balanced accuracy score`.
-```python
-# Calculated the balanced accuracy score
-y_pred_lr = lr_model.predict(X_test)
-lr_score = balanced_accuracy_score(y_test, y_pred_lr)
-lr_score
-```
-* Display the `confusion matrix`.
-```python
-# Display the confusion matrix
-confusion_matrix(y_test, y_pred_lr)
-```
-* Print the `imbalanced classification report`.
-```python
-# Print the imbalanced classification report
-print(classification_report_imbalanced(y_test, y_pred_lr))
-```
+    * Fit the `logistic regression classifier`.
+        ```python
+        # Train the Logistic Regression model
+        lr_model = LogisticRegression(solver='lbfgs', random_state=1)
+        lr_model.fit(X_train, y_train)
+        ```
+    * Calculate the `balanced accuracy score`.
+        ```python
+        # Calculated the balanced accuracy score
+        y_pred_lr = lr_model.predict(X_test)
+        lr_score = balanced_accuracy_score(y_test, y_pred_lr)
+        lr_score
+        ```
+    * Display the `confusion matrix`.
+        ```python
+        # Display the confusion matrix
+        confusion_matrix(y_test, y_pred_lr)
+        ```
+    * Print the `imbalanced classification report`.
+        ```python
+        # Print the imbalanced classification report
+        print(classification_report_imbalanced(y_test, y_pred_lr))
+        ```
 
 Next you will:
 
