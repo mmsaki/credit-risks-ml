@@ -76,7 +76,8 @@ print(classification_report_imbalanced(y_test, y_pred_lr))
 
 Next you will:
 
-- Oversample the data using the `Naive Random Oversampler` algorithm.
+### Oversample the data using the `Naive Random Oversampler` algorithm.
+
 ```python
 # Resample the training data with the RandomOverSampler
 # View the count of target classes with Counter
@@ -98,7 +99,8 @@ confusion_matrix(y_resampled, y_pred_ros)
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_resampled, y_pred_ros))
 ```
-- Oversample the data using the `SMOTE` algorithm.
+### Oversample the data using the `SMOTE` algorithm.
+
 ```python
 # Resample the training data with SMOTE
 X_resampled, y_resampled = SMOTE(random_state = 1, sampling_strategy = 1.0).fit_resample(X_train, y_train)
@@ -118,7 +120,8 @@ confusion_matrix(y_resampled, y_pred_SMOTE)
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_resampled, y_pred_SMOTE))
 ```
-- Undersample the data using the `Cluster Centroids` algorithm.
+### Undersample the data using the `Cluster Centroids` algorithm.
+
 ```python
 # Resample the data using the ClusterCentroids resampler
 cc_model = ClusterCentroids(random_state = 1)
@@ -139,7 +142,8 @@ confusion_matrix(y_resampled, y_pred_cc)
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_resampled, y_pred_cc))
 ```
-- Over- and undersample using a combination `SMOTEENN` algorithm.
+### Over- and undersample using a combination `SMOTEENN` algorithm.
+
 ```python
 # Resample the training data with SMOTEENN
 SMOTEENN_model = SMOTEENN(random_state = 1)
