@@ -208,31 +208,31 @@ X_test_scaled = X_scaler.transform(X_test)
 ```
 
 Then, complete the following steps for each model:
-
-1. Train the model using the quarterly data from LendingClub provided in the `Resource` folder.
+1. Balanced Random Forest Classifier
+- Train the model using the quarterly data from LendingClub provided in the `Resource` folder.
 ```python
 # Resample the training data with the BalancedRandomForestClassifier
 brfc_model = BalancedRandomForestClassifier(n_estimators = 1000, random_state = 1)
 brfc_model.fit(X_train_scaled, y_train)
 Counter(y_train)
 ```
-2. Calculate the balanced accuracy score from `sklearn.metrics`.
+- Calculate the balanced accuracy score from `sklearn.metrics`.
 ```python
 # Calculated the balanced accuracy score
 y_pred_brfc = brfc_model.predict(X_test_scaled)
 balanced_accuracy_score(y_test, y_pred_brfc)
 ```
-3. Display the confusion matrix from `sklearn.metrics`.
+- Display the confusion matrix from `sklearn.metrics`.
 ```python
 # Display the confusion matrix
 confusion_matrix(y_test, y_pred_brfc)
 ```
-4. Generate a classification report using the `imbalanced_classification_report` from imbalanced learn.
+- Generate a classification report using the `imbalanced_classification_report` from imbalanced learn.
 ```python
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_test, y_pred_brfc))
 ```
-5. For the balanced random forest classifier only, print the feature importance sorted in descending order (most important feature to least important) along with the feature score.
+- For the balanced random forest classifier only, print the feature importance sorted in descending order (most important feature to least important) along with the feature score.
 
 ![Importances List](./Images/BalancedRandomForestClassifier_importances_list.png)
 
@@ -246,6 +246,22 @@ ax.set_yticks(range(len(importances)))
 _ = ax.set_yticklabels(np.array(X_train.columns)[indices])
 ```
 
+2. 
+```python
+# Train the Classifier
+eec_model = EasyEnsembleClassifier(random_state = 1)
+eec_model.fit(X_train, y_train)
+
+# Calculated the balanced accuracy score
+y_pred_eec = eec_model.predict(X_test)
+print(balanced_accuracy_score(y_test, y_pred_eec))
+
+# Display the confusion matrix
+confusion_matrix(y_test, y_pred_eec)
+
+# Print the imbalanced classification report
+print(classification_report_imbalanced(y_test, y_pred_eec))
+```
 Use the above to answer the following questions:
 
 * Which model had the best balanced accuracy score?
