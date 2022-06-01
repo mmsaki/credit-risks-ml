@@ -32,36 +32,147 @@ Use the [imbalanced learn](https://imbalanced-learn.readthedocs.io) library to r
 To begin:
 
 1. Read the CSV into a DataFrame.
-
+```python
+# Load the data
+file_path = Path('Resources/lending_data.csv')
+df = pd.read_csv(file_path)
+```
 2. Split the data into Training and Testing sets.
+```python
+# Create our features
+X = df.copy()
+X.drop(columns = ["loan_status", "homeowner"], axis= 1, inplace = True)
 
+# Create our target
+y = df["loan_status"]
+
+# Create X_train, X_test, y_train, y_test
+X_train, X_test, y_train, y_test = train_test_split(X,y,random_state = 1, stratify =y)
+```
 3. Scale the training and testing data using the `StandardScaler` from `sklearn.preprocessing`.
+```python
+# Create the StandardScaler instance
+scaler = StandardScaler()
 
+# Fit the Standard Scaler with the training data
+# When fitting scaling functions, only train on the training dataset
+X_scaler = scaler.fit(X_train)
+
+# Scale the training and testing data
+X_train_scaled = X_scaler.transform(X_train)
+X_test_scaled = X_scaler.transform(X_test)
+```
 4. Use the provided code to run a Simple Logistic Regression:
-    * Fit the `logistic regression classifier`.
-    * Calculate the `balanced accuracy score`.
-    * Display the `confusion matrix`.
-    * Print the `imbalanced classification report`.
+* Fit the `logistic regression classifier`.
+```python
+# Train the Logistic Regression model
+lr_model = LogisticRegression(solver='lbfgs', random_state=1)
+lr_model.fit(X_train, y_train)
+```
+* Calculate the `balanced accuracy score`.
+```python
+# Calculated the balanced accuracy score
+y_pred_lr = lr_model.predict(X_test)
+lr_score = balanced_accuracy_score(y_test, y_pred_lr)
+lr_score
+```
+* Display the `confusion matrix`.
+```python
+# Display the confusion matrix
+confusion_matrix(y_test, y_pred_lr)
+```
+* Print the `imbalanced classification report`.
+```python
+# Print the imbalanced classification report
+print(classification_report_imbalanced(y_test, y_pred_lr))
+```
 
 Next you will:
 
-1. Oversample the data using the `Naive Random Oversampler` and `SMOTE` algorithms.
+1. Oversample the data using the `Naive Random Oversampler` algorithm.
+```python
+# Resample the training data with the RandomOverSampler
+# View the count of target classes with Counter
+ros_model = RandomOverSampler(random_state = 1)
+X_resampled, y_resampled = ros_model.fit_resample(X_train, y_train)
 
-2. Undersample the data using the `Cluster Centroids` algorithm.
+# Train the Logistic Regression model using the resampled data
+ros_model = LogisticRegression(solver = 'lbfgs', random_state = 1)
+ros_model.fit(X_resampled, y_resampled)
 
-3. Over- and undersample using a combination `SMOTEENN` algorithm.
+# Calculated the balanced accuracy score
+y_pred_ros = ros_model.predict(X_resampled)
+ros_score = balanced_accuracy_score(y_resampled, y_pred_ros)
+ros_score
 
+# Display the confusion matrix
+confusion_matrix(y_resampled, y_pred_ros)
 
-For each of the above, you will need to:
+# Print the imbalanced classification report
+print(classification_report_imbalanced(y_resampled, y_pred_ros))
+```
+2. Oversample the data using the `SMOTE` algorithm.
+```python
+# Resample the training data with SMOTE
+X_resampled, y_resampled = SMOTE(random_state = 1, sampling_strategy = 1.0).fit_resample(X_train, y_train)
 
-1. Train a `logistic regression classifier` from `sklearn.linear_model` using the resampled data.
+# Train the Logistic Regression model using the resampled data
+SMOTE_model = LogisticRegression(solver = 'lbfgs', random_state = 1)
+SMOTE_model.fit(X_resampled, y_resampled)
 
-2. Calculate the `balanced accuracy score` from `sklearn.metrics`.
+# Calculated the balanced accuracy score
+y_pred_SMOTE = SMOTE_model.predict(X_resampled)
+SMOTE_score = balanced_accuracy_score(y_resampled, y_pred_SMOTE)
+SMOTE_score
 
-3. Display the `confusion matrix` from `sklearn.metrics`.
+# Display the confusion matrix
+confusion_matrix(y_resampled, y_pred_SMOTE)
 
-4. Print the `imbalanced classification report` from `imblearn.metrics`.
+# Print the imbalanced classification report
+print(classification_report_imbalanced(y_resampled, y_pred_SMOTE))
+```
+3. Undersample the data using the `Cluster Centroids` algorithm.
+```python
+# Resample the data using the ClusterCentroids resampler
+cc_model = ClusterCentroids(random_state = 1)
+X_resampled, y_resampled = cc_model.fit_resample(X_train, y_train)
 
+# Train the Logistic Regression model using the resampled data
+cc_model = LogisticRegression(solver = 'lbfgs', random_state = 1)
+cc_model.fit(X_resampled, y_resampled)
+
+# Calculate the balanced accuracy score
+y_pred_cc = cc_model.predict(X_resampled)
+cc_score = balanced_accuracy_score(y_resampled, y_pred_cc)
+cc_score
+
+# Display the confusion matrix
+confusion_matrix(y_resampled, y_pred_cc)
+
+# Print the imbalanced classification report
+print(classification_report_imbalanced(y_resampled, y_pred_cc))
+```
+4. Over- and undersample using a combination `SMOTEENN` algorithm.
+```python
+# Resample the training data with SMOTEENN
+SMOTEENN_model = SMOTEENN(random_state = 1)
+X_resampled, y_resampled = SMOTEENN_model.fit_resample(X_train, y_train)
+
+# Train the Logistic Regression model using the resampled data
+SMOTEENN_model = LogisticRegression(solver = 'lbfgs', random_state = 1)
+SMOTEENN_model.fit(X_resampled, y_resampled)
+
+# Calculate the balanced accuracy score
+y_pred_SMOTEENN = SMOTEENN_model.predict(X_resampled)
+SMOTEENN_score = balanced_accuracy_score(y_resampled, y_pred_SMOTEENN)
+SMOTEENN_score
+
+# Display the confusion matrix
+confusion_matrix(y_resampled, y_pred_SMOTEENN)
+
+# Print the imbalanced classification report
+print(classification_report_imbalanced(y_resampled, y_pred_SMOTEENN))
+```
 
 Use the above to answer the following questions:
 
@@ -78,24 +189,43 @@ In this section, you will train and compare two different ensemble classifiers t
 To begin:
 
 1. Read the data into a DataFrame using the provided starter code.
-
+```python
+# Load the data
+file_path = Path('Resources/LoanStats_2019Q1.csv')
+df = pd.read_csv(file_path)
+```
 2. Split the data into training and testing sets.
+```python
+# Create our features
+X = df.drop(columns = ["loan_status", "home_ownership", "verification_status", "issue_d", "pymnt_plan", "initial_list_status", "next_pymnt_d", "application_type", "hardship_flag","debt_settlement_flag"])
 
+# Create our target
+y = df["loan_status"]
+
+# Split the X and y into X_train, X_test, y_train, y_test
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 1, stratify = y)
+```
 3. Scale the training and testing data using the `StandardScaler` from `sklearn.preprocessing`.
-
+```python
+```
 
 Then, complete the following steps for each model:
 
 1. Train the model using the quarterly data from LendingClub provided in the `Resource` folder.
-
+```python
+```
 2. Calculate the balanced accuracy score from `sklearn.metrics`.
-
+```python
+```
 3. Display the confusion matrix from `sklearn.metrics`.
-
+```python
+```
 4. Generate a classification report using the `imbalanced_classification_report` from imbalanced learn.
-
+```python
+```
 5. For the balanced random forest classifier only, print the feature importance sorted in descending order (most important feature to least important) along with the feature score.
-
+```python
+```
 
 Use the above to answer the following questions:
 
