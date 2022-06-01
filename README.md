@@ -18,13 +18,13 @@ Use the [imbalanced learn](https://imbalanced-learn.readthedocs.io) library to r
 
 To begin:
 
-1. Read the CSV into a DataFrame.
+- Read the CSV into a DataFrame.
 ```python
 # Load the data
 file_path = Path('Resources/lending_data.csv')
 df = pd.read_csv(file_path)
 ```
-2. Split the data into Training and Testing sets.
+- Split the data into Training and Testing sets.
 ```python
 # Create our features
 X = df.copy()
@@ -36,7 +36,7 @@ y = df["loan_status"]
 # Create X_train, X_test, y_train, y_test
 X_train, X_test, y_train, y_test = train_test_split(X,y,random_state = 1, stratify =y)
 ```
-3. Scale the training and testing data using the `StandardScaler` from `sklearn.preprocessing`.
+- Scale the training and testing data using the `StandardScaler` from `sklearn.preprocessing`.
 ```python
 # Create the StandardScaler instance
 scaler = StandardScaler()
@@ -49,7 +49,7 @@ X_scaler = scaler.fit(X_train)
 X_train_scaled = X_scaler.transform(X_train)
 X_test_scaled = X_scaler.transform(X_test)
 ```
-4. Use the provided code to run a Simple Logistic Regression:
+- Use the provided code to run a Simple Logistic Regression:
 * Fit the `logistic regression classifier`.
 ```python
 # Train the Logistic Regression model
@@ -76,7 +76,7 @@ print(classification_report_imbalanced(y_test, y_pred_lr))
 
 Next you will:
 
-1. Oversample the data using the `Naive Random Oversampler` algorithm.
+- Oversample the data using the `Naive Random Oversampler` algorithm.
 ```python
 # Resample the training data with the RandomOverSampler
 # View the count of target classes with Counter
@@ -98,7 +98,7 @@ confusion_matrix(y_resampled, y_pred_ros)
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_resampled, y_pred_ros))
 ```
-2. Oversample the data using the `SMOTE` algorithm.
+- Oversample the data using the `SMOTE` algorithm.
 ```python
 # Resample the training data with SMOTE
 X_resampled, y_resampled = SMOTE(random_state = 1, sampling_strategy = 1.0).fit_resample(X_train, y_train)
@@ -118,7 +118,7 @@ confusion_matrix(y_resampled, y_pred_SMOTE)
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_resampled, y_pred_SMOTE))
 ```
-3. Undersample the data using the `Cluster Centroids` algorithm.
+- Undersample the data using the `Cluster Centroids` algorithm.
 ```python
 # Resample the data using the ClusterCentroids resampler
 cc_model = ClusterCentroids(random_state = 1)
@@ -139,7 +139,7 @@ confusion_matrix(y_resampled, y_pred_cc)
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_resampled, y_pred_cc))
 ```
-4. Over- and undersample using a combination `SMOTEENN` algorithm.
+- Over- and undersample using a combination `SMOTEENN` algorithm.
 ```python
 # Resample the training data with SMOTEENN
 SMOTEENN_model = SMOTEENN(random_state = 1)
@@ -176,13 +176,13 @@ In this section, you will train and compare two different ensemble classifiers t
 
 To begin:
 
-1. Read the data into a DataFrame using the provided starter code.
+- Read the data into a DataFrame using the provided starter code.
 ```python
 # Load the data
 file_path = Path('Resources/LoanStats_2019Q1.csv')
 df = pd.read_csv(file_path)
 ```
-2. Split the data into training and testing sets.
+- Split the data into training and testing sets.
 ```python
 # Create our features
 X = df.drop(columns = ["loan_status", "home_ownership", "verification_status", "issue_d", "pymnt_plan", "initial_list_status", "next_pymnt_d", "application_type", "hardship_flag","debt_settlement_flag"])
@@ -193,7 +193,7 @@ y = df["loan_status"]
 # Split the X and y into X_train, X_test, y_train, y_test
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 1, stratify = y)
 ```
-3. Scale the training and testing data using the `StandardScaler` from `sklearn.preprocessing`.
+- Scale the training and testing data using the `StandardScaler` from `sklearn.preprocessing`.
 ```python
 # Create the StandardScaler instance
 scaler = StandardScaler()
