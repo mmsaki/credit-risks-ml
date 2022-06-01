@@ -35,7 +35,7 @@ Use the [imbalanced learn](https://imbalanced-learn.readthedocs.io) library to r
         # Create X_train, X_test, y_train, y_test
         X_train, X_test, y_train, y_test = train_test_split(X,y,random_state = 1, stratify =y)
         ```
-    - Scale the training and testing data using the `StandardScaler` from `sklearn.preprocessing`.
+    - Scale the training and testing data using the StandardScaler from `sklearn.preprocessing`.
         ```python
         # Create the StandardScaler instance
         scaler = StandardScaler()
@@ -49,25 +49,25 @@ Use the [imbalanced learn](https://imbalanced-learn.readthedocs.io) library to r
         X_test_scaled = X_scaler.transform(X_test)
         ```
 - Use the provided code to run a Simple Logistic Regression:
-    * Fit the `logistic regression classifier`.
+    * Fit the logistic regression classifier.
         ```python
         # Train the Logistic Regression model
         lr_model = LogisticRegression(solver='lbfgs', random_state=1)
         lr_model.fit(X_train, y_train)
         ```
-    * Calculate the `balanced accuracy score`.
+    * Calculate the balanced accuracy score.
         ```python
         # Calculated the balanced accuracy score
         y_pred_lr = lr_model.predict(X_test)
         lr_score = balanced_accuracy_score(y_test, y_pred_lr)
         lr_score
         ```
-    * Display the `confusion matrix`.
+    * Display the confusion matrix.
         ```python
         # Display the confusion matrix
         confusion_matrix(y_test, y_pred_lr)
         ```
-    * Print the `imbalanced classification report`.
+    * Print the imbalanced classification report.
         ```python
         # Print the imbalanced classification report
         print(classification_report_imbalanced(y_test, y_pred_lr))
