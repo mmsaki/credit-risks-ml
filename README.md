@@ -76,7 +76,7 @@ print(classification_report_imbalanced(y_test, y_pred_lr))
 
 Next you will:
 
-### Oversample the data using the `Naive Random Oversampler` algorithm.
+### Oversample the data using the Naive Random Oversampler algorithm.
 
 ```python
 # Resample the training data with the RandomOverSampler
@@ -99,7 +99,7 @@ confusion_matrix(y_resampled, y_pred_ros)
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_resampled, y_pred_ros))
 ```
-### Oversample the data using the `SMOTE` algorithm.
+### Oversample the data using the SMOTE algorithm.
 
 ```python
 # Resample the training data with SMOTE
@@ -120,7 +120,7 @@ confusion_matrix(y_resampled, y_pred_SMOTE)
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_resampled, y_pred_SMOTE))
 ```
-### Undersample the data using the `Cluster Centroids` algorithm.
+### Undersample the data using the Cluster Centroids algorithm.
 
 ```python
 # Resample the data using the ClusterCentroids resampler
@@ -142,7 +142,7 @@ confusion_matrix(y_resampled, y_pred_cc)
 # Print the imbalanced classification report
 print(classification_report_imbalanced(y_resampled, y_pred_cc))
 ```
-### Over- and undersample using a combination `SMOTEENN` algorithm.
+### Over- and undersample using a combination SMOTEENN algorithm.
 
 ```python
 # Resample the training data with SMOTEENN
@@ -211,7 +211,6 @@ X_train_scaled = X_scaler.transform(X_train)
 X_test_scaled = X_scaler.transform(X_test)
 ```
 
-Then, complete the following steps for each model:
 ### Part one: Balanced Random Forest Classifier
 - Train the model using the quarterly data from LendingClub provided in the `Resource` folder.
 ```python
@@ -251,6 +250,7 @@ _ = ax.set_yticklabels(np.array(X_train.columns)[indices])
 ```
 
 ### Part Two: Easy Ensemble Classifier
+
 ```python
 # Train the Classifier
 eec_model = EasyEnsembleClassifier(random_state = 1)
