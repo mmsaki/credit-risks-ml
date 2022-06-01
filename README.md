@@ -164,10 +164,11 @@ print(classification_report_imbalanced(y_resampled, y_pred_SMOTEENN))
 Use the above to answer the following questions:
 
 * Which model had the best balanced accuracy score?
->
+    - SMOTEENN Model
 * Which model had the best recall score?
->
+    - SMOTEENN Model
 * Which model had the best geometric mean score?
+    - SMOTEENN Model
 
 ## Ensemble Learning
 
@@ -245,13 +246,13 @@ _ = ax.set_yticklabels(np.array(X_train.columns)[indices])
 Use the above to answer the following questions:
 
 * Which model had the best balanced accuracy score?
-
+    - Balanced Random Forest Classifier
 * Which model had the best recall score?
-
+    - Balanced Random Forest Classifier
 * Which model had the best geometric mean score?
-
+    - Balanced Random Forest Classifier
 * What are the top three features?
-
+    - total_rec_prncp, total_rec_int, last_pymnt_amnt
 - - -
 
 © 2021 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
