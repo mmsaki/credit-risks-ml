@@ -246,7 +246,7 @@ ax.set_yticks(range(len(importances)))
 _ = ax.set_yticklabels(np.array(X_train.columns)[indices])
 ```
 
-2. 
+2. Easy Ensemble Classifier
 ```python
 # Train the Classifier
 eec_model = EasyEnsembleClassifier(random_state = 1)
