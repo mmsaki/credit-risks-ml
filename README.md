@@ -233,6 +233,9 @@ confusion_matrix(y_test, y_pred_brfc)
 print(classification_report_imbalanced(y_test, y_pred_brfc))
 ```
 5. For the balanced random forest classifier only, print the feature importance sorted in descending order (most important feature to least important) along with the feature score.
+
+![Importances List](./Images/BalancedRandomForestClassifier_importances_list.png)
+
 ```python
 # List the features sorted in descending order by feature importance
 importances = brf_model.feature_importances_
